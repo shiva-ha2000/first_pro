@@ -1,0 +1,75 @@
+#include <iostream>
+
+size_t length(const char string[])
+{
+    int i = 0;
+    while (string[i] != 0)
+    {
+
+        i++;
+    }
+    return i;
+}
+
+class str
+{
+public:
+    int len;
+    char *l;
+
+    str() = default;
+    str(const char text[])
+    {
+
+        len = length(text);
+        l = (char *)malloc(len + 1 * sizeof(*l));
+
+        for (int i = 0; i <= len; i++)
+        {
+            l[i] = text[i];
+        }
+    }
+
+    void print()
+    {
+        std::cout << l;
+    }
+
+    void add(str const &other)
+    {
+        // calculat  length
+
+        size_t txt_len = len + other.len;
+
+        // malloc buffer
+
+        char *p = static_cast<char *>(malloc(txt_len));
+
+        // copy values
+
+        // my values
+        int i = 0;
+        for (; l[i] != 0; i++)
+        {
+            p[i] = l[i];
+        }
+
+        // other's values
+
+        p += i;
+        for (i = 0; other.l[i] != 0; i++)
+        {
+            p[i] = other.l[i];
+        }
+    }
+};
+
+int main()
+{
+    str a("hii");
+
+    str e("hi");
+    a.add(e);
+    a.print();
+    return 0;
+}
